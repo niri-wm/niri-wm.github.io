@@ -1,9 +1,10 @@
 <script>
 	import favicon from '$lib/assets/favicon.svg';
+	import '$lib/style.css';
+	import "@fontsource/national-park";
+	import "@fontsource/national-park/800.css";
 
 	let { children } = $props();
-
-	export const prerender = true;
 </script>
 
 <svelte:head>
