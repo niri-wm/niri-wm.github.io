@@ -53,11 +53,32 @@
   --space-2xl-nd: 4rem;
   --space-3xl-nd: 6rem;
 
-  --space-sm: fluid(600px, 1100px, 0.5rem, 1rem);
-  --space-md: fluid(600px, 1100px, 1rem, 2rem);
-  --space-lg: fluid(600px, 1100px, 2rem, 3rem);
-  --space-xl: fluid(600px, 1100px, 3rem, 4rem);
+  --space-sm: fluid(0.25rem, 0.5rem, 600px, 1600px);  
+  --space-md: fluid(0.5rem, 1rem, 600px, 1600px);
+  --space-lg: fluid(1rem, 2rem, 600px, 1600px);
+  --space-xl: fluid(2rem, 3rem, 600px, 1600px);
+  --space-2xl: fluid(3rem, 4rem, 600px, 1600px);
 
+  --text-xs-nd: 0.875rem;
+  --text-sm-nd: 1rem;
+  --text-md-nd: 1.25rem;
+  --text-lg-nd: 1.5rem;
+  --text-xl-nd: 2rem;
+  --text-2xl-nd: 3rem;
+
+  --text-sm: fluid(0.875rem, 1rem, 600px, 1600px);
+  --text-md: fluid(1rem, 1.25rem, 600px, 1600px);
+  --text-lg: fluid(1.25rem, 1.5rem, 600px, 1600px);
+  --text-xl: fluid(1.5rem, 2rem, 600px, 1600px);
+  --text-2xl: fluid(2rem, 3rem, 600px, 1600px);
+
+  --font-sans: 'National Park',
+  sans-serif;
+
+}
+
+* {
+  font-family: var(--font-sans);
 }
 
 body {
@@ -71,6 +92,30 @@ body {
   }
 }
 
+.button {
+  padding: var(--space-md) var(--space-lg);
+  border: none;
+  font-size: var(--text-lg);
+  font-weight: 800;
+  border-radius: 999px;
+  position: relative;
+  
+  &.skeuo:before {
+    border-radius: 999px;
+  }
+}
+
+.skeuo:before {
+  box-shadow: inset 3px 10px 10px #eee4, inset -10px -10px 10px #0005;
+  position: absolute;
+  border-radius: 999px;
+  mix-blend-mode: luminosity;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+}
 
 
 

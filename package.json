@@ -28,6 +28,7 @@
 		"vite": "^7.3.1"
 	},
 	"dependencies": {
-		"@fontsource/national-park": "^5.2.11"
+		"@fontsource/national-park": "^5.2.11",
+		"sveltekit-islands": "^2.0.0-beta.4"
 	}
 }
