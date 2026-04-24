@@ -11,6 +11,7 @@
   --color-pink-700: oklch(0.54 0.14 15);
   --color-pink-800: oklch(0.42 0.11 15);
   --color-pink-900: oklch(0.31 0.08 15);
+  --color-pink-950: oklch(0.25 0.06 15);
   --color-orange-100: oklch(0.97 0.02 57);
   --color-orange-200: oklch(0.92 0.05 57);
   --color-orange-300: oklch(0.86 0.1 57);
@@ -32,10 +33,14 @@
 
   --color-text: var(--color-pink-900);
   --color-background: var(--color-pink-100);
+  --color-background-container: var(--color-pink-300);
+
 
   @color-scheme dark {
     --color-text: var(--color-pink-100);
     --color-background: var(--color-pink-900);
+    --color-background-container: var(--color-pink-950);
+
   }
 
   /* sm is the default small end for the fluid function */
@@ -53,7 +58,7 @@
   --space-2xl-nd: 4rem;
   --space-3xl-nd: 6rem;
 
-  --space-sm: fluid(0.25rem, 0.5rem, 600px, 1600px);  
+  --space-sm: fluid(0.25rem, 0.5rem, 600px, 1600px);
   --space-md: fluid(0.5rem, 1rem, 600px, 1600px);
   --space-lg: fluid(1rem, 2rem, 600px, 1600px);
   --space-xl: fluid(2rem, 3rem, 600px, 1600px);
@@ -99,9 +104,23 @@ body {
   font-weight: 800;
   border-radius: 999px;
   position: relative;
-  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-md);
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-duration: 150ms;
+  transition-property: all;
+  transition-delay: 0ms;
+
+
   &.skeuo:before {
     border-radius: 999px;
+  }
+
+  &:active {
+    transform: scale(90%);
+
   }
 }
 
