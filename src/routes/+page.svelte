@@ -9,7 +9,13 @@
 	import Check from 'virtual:icons/material-symbols/check-rounded';
 	import OpenInFull from 'virtual:icons/material-symbols/open-in-full-rounded';
 	import Island from '$lib/Island.svelte';
-	import PauseButton from '$lib/islands/PauseButton.svelte';
+
+	import wmtypes_floating from '$lib/assets/wmtypes_floating.svg';
+	import wmtypes_tiling from '$lib/assets/wmtypes_tiling.svg';
+	import wmtypes_scrollable from '$lib/assets/wmtypes_scrollable.svg';
+
+	// the pause button manages the video's playing/paused state, including accessibility and pausing it when it scrolls out of view. yes, it's a little bit cursed.
+	import PauseButton from '$lib/PauseButton.svelte';
 
 	import { browser } from '$app/environment';
 </script>
@@ -42,20 +48,18 @@
 				});
 			</script>
 			<h1>niri lets you scroll through your windows.</h1>
-			<h2>And it's fast, stable and usable beyond belief.</h2>
-			<a id="start" class="button skeuo">Start using it</a>
+			<h2>And it's fast, stable, and usable beyond belief.</h2>
+			<a id="startbtn" class="button skeuo" href="#start">Start using it</a>
 			<div id="controls">
 				<button id="fullscreen" class="button">
 					View demo
 					<OpenInFull width={32} height={32} />
 				</button>
-				<!-- <Island component={PauseButton} name="PauseButton" on:visible /> -->
-				{#if browser}
-					<PauseButton />
-				{/if}
+				<PauseButton />
 			</div>
 
 			<script>
+				// TODO: move into a dedicated component to get the logic out of this file, migrate to using svelte stores now that we have CSR enabled.
 				document.getElementById('fullscreen').addEventListener('click', () => {
 					const video = document.getElementById('herovid');
 					if (video.requestFullscreen) {
@@ -146,17 +150,105 @@
 		</div>
 	</section>
 	<section id="tiling">
-		<h1>How niri is used</h1>
+		<h1>niri's unique model</h1>
 		<div>
 			<figure>
+				<h2>What niri Does</h2>
+
+				<img src={wmtypes_scrollable} id="wmtypes_scrollable_img" alt="" aria-hidden="true" />
+
 				<p>
-					Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello!
-					Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello!
-					Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello!
-					Hello! Hello! Hello! Hello!
+					<b>niri brings a new approach to organizing your windows.</b>
+					It doesn't let windows cover other windows, or resize anything, without you telling it to. If
+					you run out of space on your screen, just scroll to the side and open a new window!
+				</p>
+			</figure>
+			<figure>
+				<h2>The Status Quo</h2>
+				<img src={wmtypes_floating} id="wmtypes_floating_img" alt="" aria-hidden="true" />
+
+				<p>
+					<b> Most modern computers let you place windows wherever you want on your screen. </b> The downside
+					of this approach is that if you run out of room you need to shrink and reposition windows yourself,
+					and windows can get buried under massive stacks of other windows.
+				</p>
+			</figure>
+			<figure>
+				<h2>The Other Alternative</h2>
+
+				<img src={wmtypes_tiling} id="wmtypes_tiling_img" alt="" aria-hidden="true" />
+
+				<p>
+					<b>
+						If you've spent a lot of time on Linux, you may have heard of tiling window managers.
+					</b>
+
+					Like niri, these don't let your windows overlap, but unlike niri they will shrink and
+					squish your windows to fit into a grid. You can't have multiple fullscreen windows open in
+					one workspace.
 				</p>
 			</figure>
 		</div>
+	</section>
+	<section id="start">
+		<h1>Start using niri</h1>
+		<div>
+			<figure>
+				<h2>Install an OS that includes niri</h2>
+				<p>
+					For technical people looking to be on the bleeding edge of the Linux ecosystem, Zirconium
+					is a great choice, and it comes with niri and <a href="https://danklinux.com/"
+						>DankMaterialShell</a
+					> out of the box.
+				</p>
+				<a href="https://zirconium.gay/" class="button">Get Zirconium</a>
+				<p>
+					If you want the best gaming performance possible, CachyOS' niri variant is also an amazing
+					choice. You'll find it in the list of available desktop environments in the installer. It
+					comes with <a href="https://noctalia.dev/">Noctalia</a>!
+				</p>
+				<a href="https://cachyos.org/" class="button">Get CachyOS</a>
+			</figure>
+			<figure>
+				<h2>Install niri with a desktop</h2>
+
+				<p>
+					For those wanting a fully set-up niri experience, a large ecosystem of plugins and
+					utilities, and a Material You-styled desktop, DankMaterialShell provides a great option.
+				</p>
+				<a href="https://danklinux.com/" class="button">Get DankMaterialShell</a>
+				<p>
+					If you prefer a minimalistic, comfy aesthetic and having total control over the appearance
+					of your desktop while keeping the convenience of a shell, consider Noctalia.
+				</p>
+				<a href="https://noctalia.dev/" class="button">Get Noctalia</a>
+			</figure>
+			<figure>
+				<h2>Configure niri yourself</h2>
+
+				<p>
+					Want total control over every aspect of your desktop? Our wiki covers everything you need
+					to know about installing and using niri.
+				</p>
+				<a href="/niri" class="button">Read the Wiki</a>
+			</figure>
+			<figure>
+				<h2>Contribute to niri</h2>
+
+				<p>
+					If you find yourself loving niri and have some spare time, there's always a way you can
+					help out. Come help review issues, PRs and patches, or write the features you want to see
+					into the project.
+				</p>
+				<a href="https://github.com/niri-wm/niri/" class="button">Go to GitHub</a>
+			</figure>
+		</div>
+	</section>
+	<section>
+		<p id="credit">
+			web design by <a href="https://github.com/bluelinden">blue linden</a>; niri logo by blue and
+			<a href="https://github.com/HumpityDumpityDumber/">knee</a>
+		</p>
 	</section>
 </main>
 
@@ -184,7 +276,7 @@
 		padding-top: var(--space-md);
 	}
 
-	a#start {
+	a#startbtn {
 		background: var(--color-blue-700);
 		color: var(--color-blue-100);
 
@@ -269,6 +361,7 @@
 			&.blurred {
 				filter: brightness(30%) saturate(150%) blur(4px);
 				transform: scale(101%);
+				object-fit: cover;
 			}
 		}
 		#herograd {
@@ -344,17 +437,90 @@
 			gap: var(--space-md);
 			padding: var(--space-lg);
 			figure {
-				background-color: var(--color-background-container);
-				padding: var(--space-lg);
-				border-radius: 24px;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
+				gap: var(--space-md);
+				p {
+					text-align: left;
+					padding-left: var(--space-md);
+					padding-right: var(--space-md);
+					width: 100%;
+					font-size: var(--text-md);
+				}
+				img {
+					border-radius: 24px;
+					border-width: 4px;
+					border-style: solid;
+					&#wmtypes_floating_img {
+						border-color: var(--color-blue-500);
+					}
+					&#wmtypes_tiling_img {
+						border-color: var(--color-orange-500);
+					}
+					&#wmtypes_scrollable_img {
+						border-color: var(--color-pink-500);
+					}
+				}
+				h2 {
+					line-height: var(--text-xl);
+					margin-bottom: var(--space-md);
+					margin-top: var(--space-lg);
+				}
+			}
+		}
+	}
+
+	section#start {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+		> div {
+			display: grid;
+			max-width: min(var(--screen-md), 100vw);
+			grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+			gap: var(--space-md);
+			padding: var(--space-lg);
+			figure {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				background-color: var(--color-background-container);
+				padding: var(--space-md);
+				border-radius: 24px;
+				gap: var(--space-md);
+				p {
+					text-align: left;
+					padding-left: var(--space-md);
+					padding-right: var(--space-md);
+					width: 100%;
+					font-size: var(--text-md);
+				}
+				a.button {
+					background-color: var(--color-pink-300);
+					color: var(--color-pink-900);
+					padding: var(--space-sm);
+					padding-left: var(--space-lg);
+					padding-right: var(--space-lg);
+					margin-bottom: var(--space-md);
+				}
+				a:not(.button) {
+					color: var(--color-link);
+				}
 				h2 {
 					line-height: var(--text-xl);
 					margin-bottom: var(--space-md);
 				}
 			}
+		}
+	}
+
+	#credit {
+		font-size: var(--text-xs);
+		margin-bottom: var(--spacing-md);
+		color: var(--color-text);
+		a {
+			color: var(--color-link);
 		}
 	}
 
