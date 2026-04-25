@@ -8,6 +8,10 @@
 	import Exercise from 'virtual:icons/material-symbols/exercise-outline';
 	import Check from 'virtual:icons/material-symbols/check-rounded';
 	import OpenInFull from 'virtual:icons/material-symbols/open-in-full-rounded';
+	import Island from '$lib/Island.svelte';
+	import PauseButton from '$lib/islands/PauseButton.svelte';
+
+	import { browser } from '$app/environment';
 </script>
 
 <main>
@@ -40,10 +44,17 @@
 			<h1>niri lets you scroll through your windows.</h1>
 			<h2>And it's fast, stable and usable beyond belief.</h2>
 			<a id="start" class="button skeuo">Start using it</a>
-			<button id="fullscreen" class="button">
-				View demo
-				<OpenInFull width={32} height={32} />
-			</button>
+			<div id="controls">
+				<button id="fullscreen" class="button">
+					View demo
+					<OpenInFull width={32} height={32} />
+				</button>
+				<!-- <Island component={PauseButton} name="PauseButton" on:visible /> -->
+				{#if browser}
+					<PauseButton />
+				{/if}
+			</div>
+
 			<script>
 				document.getElementById('fullscreen').addEventListener('click', () => {
 					const video = document.getElementById('herovid');
@@ -74,7 +85,7 @@
 			</script>
 		</div>
 	</header>
-	<section id="tiling">
+	<section id="whyniri">
 		<h1>Why niri?</h1>
 		<div>
 			<figure>
@@ -134,8 +145,18 @@
 			</figure>
 		</div>
 	</section>
-	<section id="users">
-
+	<section id="tiling">
+		<h1>How niri is used</h1>
+		<div>
+			<figure>
+				<p>
+					Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello!
+					Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello!
+					Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello!
+					Hello! Hello! Hello! Hello!
+				</p>
+			</figure>
+		</div>
 	</section>
 </main>
 
@@ -259,15 +280,21 @@
 			object-fit: cover;
 		}
 
-		#fullscreen {
+		#controls {
 			bottom: var(--space-lg);
 			right: var(--space-lg);
-			background: var(--color-orange-300);
-			color: var(--color-orange-900);
-			&:hover {
-				background: var(--color-orange-200);
-			}
+			display: flex;
+			flex-direction: row;
+			gap: var(--space-md);
 			position: absolute;
+
+			#fullscreen {
+				background: var(--color-orange-300);
+				color: var(--color-orange-900);
+				&:hover {
+					background: var(--color-orange-200);
+				}
+			}
 		}
 	}
 
@@ -275,12 +302,41 @@
 		font-size: var(--text-2xl);
 	}
 
-	section#tiling {
+	main > section {
+		margin-bottom: var(--space-xl);
+	}
+
+	section#whyniri {
 		/* css grid blocks layout */
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-md);
 
+		> div {
+			display: grid;
+			max-width: min(var(--screen-md), 100vw);
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: var(--space-md);
+			padding: var(--space-lg);
+			figure {
+				background-color: var(--color-background-container);
+				padding: var(--space-lg);
+				border-radius: 24px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				h2 {
+					line-height: var(--text-xl);
+					margin-bottom: var(--space-md);
+				}
+			}
+		}
+	}
+
+	section#tiling {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
 		> div {
 			display: grid;
 			max-width: min(var(--screen-md), 100vw);

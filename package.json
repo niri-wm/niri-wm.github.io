@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "vite -c islands.vite.config.js build && vite build",
     "preview": "vite preview",
     "deploy": "wrangler pages deploy build/",
     "prepare": "svelte-kit sync || echo ''",
@@ -28,11 +28,16 @@
     "prettier": "^3.8.1",
     "prettier-plugin-svelte": "^3.4.1",
     "svelte": "^5.49.2",
+    "svelte-preprocess": "^6.0.3",
+    "terser": "^5.46.2",
     "unplugin-icons": "^23.0.1",
     "vite": "^7.3.1"
   },
   "dependencies": {
+    "@11ty/is-land": "^5.0.1",
     "@fontsource/national-park": "^5.2.11",
+    "@lukeed/uuid": "^2.0.1",
+    "devalue": "^5.7.1",
     "sveltekit-islands": "^2.0.0-beta.4"
   }
 }
